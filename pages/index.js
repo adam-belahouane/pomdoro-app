@@ -1,16 +1,18 @@
 import SettingModal from "../components/SettingsModal";
 import Timer from "../components/Timer";
 import Timerselector from "../components/TimerSelector";
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
+import formatTime from "../tools/formatTime";
 
 function HomePage() {
   const [isOpen, setIsOpen] = useState(false);
   const [timer, setTimer] = useState("pomodoro");
+  const [isPaused, setIsPaused] = useState(true)
   const [timerState, dispatchTimer] = useReducer(
-    (state) => {
+    (state, action) => {
       return {
         ...state,
-        ...timerState,
+        ...action
       };
     },
     {
@@ -21,6 +23,30 @@ function HomePage() {
   );
   const {pomodoro, shortBreak, longBreak} = timerState
 
+  useEffect(() => {
+    let interval;
+
+    if (!isPaused) {
+      if(timer === "pomodoro"){
+        interval = setInterval(() => {
+          dispatchTimer({pomodoro: timerState.pomodoro -1});
+        }, 1000);
+      }else if(timer === "sBreak"){
+        interval = setInterval(() => {
+          dispatchTimer({shortBreak: timerState.shortBreak -1});
+        }, 1000);
+      }else{
+        interval = setInterval(() => {
+          dispatchTimer({longBreak: timerState.longBreak -1});
+        }, 1000);
+      }
+      
+    }
+
+    return () => clearInterval(interval);
+  }, [isPaused, timerState])
+
+
   return (
     <div className="flex flex-col items-center w-screen h-screen bg-blue-950">
       <h1 className="text-white font-bold text-3xl m-4">pomodoro</h1>
@@ -28,11 +54,12 @@ function HomePage() {
       <Timer>
         <div>
           {timer === "pomodoro"
-            ? pomodoro
+            ? formatTime(pomodoro)
             : timer === "sBreak"
-            ?  shortBreak 
-            :  longBreak }
+            ?  formatTime(shortBreak)
+            :  formatTime(longBreak) }
         </div>
+        <>{isPaused?<div onClick={() => setIsPaused(false)}>Play</div>:<div onClick={() => setIsPaused(true)}>Paused</div>}</>
       </Timer>
       <button onClick={() => setIsOpen(true)}>button</button>
       {isOpen ? <SettingModal /> : <></>}
