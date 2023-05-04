@@ -48,7 +48,7 @@ function HomePage() {
 
 
   return (
-    <div className="flex flex-col items-center w-screen h-screen bg-blue-950">
+    <div className="flex flex-col items-center w-screen h-screen bg-blue-900">
       <h1 className="text-white font-bold text-3xl m-4">pomodoro</h1>
       <Timerselector timer={timer} setTimer={setTimer} />
       <Timer>
@@ -62,7 +62,7 @@ function HomePage() {
         <>{isPaused?<div onClick={() => setIsPaused(false)}>Play</div>:<div onClick={() => setIsPaused(true)}>Paused</div>}</>
       </Timer>
       <button onClick={() => setIsOpen(true)}>button</button>
-      {isOpen ? <SettingModal /> : <></>}
+      {isOpen ? <SettingModal isOpen={isOpen} setIsOpen={setIsOpen} /> : <></>}
     </div>
   );
 }
