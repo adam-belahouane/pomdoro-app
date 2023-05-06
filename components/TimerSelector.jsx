@@ -1,10 +1,15 @@
-const Timerselector = ({timer, setTimer}) => {
+const Timerselector = ({timer, setTimer, color}) => {
+
+    const handleTimer = (word) => {
+        if(word === timer) return `bg-${color}`
+        return "text-gray-400"
+    }
 
     return(
-        <div className="py-4 px-3 bg-blue-950">
-            <button className={timer ==="pomodoro"?"text-red-400":"text-blue-100"} onClick={() => setTimer("pomodoro")}>pomodoro</button>
-            <button className={timer ==="sBreak"?"text-red-400":"text-blue-100"} onClick={() => setTimer("sBreak")}>short break</button>
-            <button className={timer ==="lBreak"?"text-red-400":"text-blue-100"} onClick={() => setTimer("lBreak")}>long break</button>
+        <div className="p-2 rounded-[33px] bg-[#161932] m-11">
+            <button className={"rounded-[33px] py-4 px-8 text-sm font-bold " + handleTimer("pomodoro")} onClick={() => setTimer("pomodoro")}>pomodoro</button>
+            <button className={"rounded-[33px] py-4 px-8 text-sm font-bold " + handleTimer("sBreak")} onClick={() => setTimer("sBreak")}>short break</button>
+            <button className={"rounded-[33px] py-4 px-8 text-sm font-bold " + handleTimer("lBreak")} onClick={() => setTimer("lBreak")}>long break</button>
         </div>
     )
 }
