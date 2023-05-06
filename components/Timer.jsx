@@ -1,7 +1,7 @@
 const Timer = (props) => {
     
     return(
-        <div>
+        <div className="flex justify-center items-center">
             {props.children}
         </div>
     )
