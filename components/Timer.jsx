@@ -1,20 +1,33 @@
 import { useEffect, useState } from "react";
 import formatTime from "../tools/formatTime";
 
-const Timer = ({ totalTime, color }) => {
+const Timer = ({ totalTime, color, selectT, setTimer }) => {
   const [timeRemaining, setTimeRemaining] = useState(totalTime);
   const [isPaused, setIsPaused] = useState(true);
 
+  const handleTimer = (word) => {
+    if(word === "pomodoro")return "sBreak"
+    return "pomodoro"
+  }
+
   useEffect(() => {
-    let timer;
+    let time;
+
+    if (timeRemaining === 0) {
+      setIsPaused(true);
+      const audio = new Audio("../alarm.mp3");
+      audio.play();
+      setTimer(handleTimer(selectT));
+      setIsPaused(false);
+    }
 
     if (!isPaused) {
-      timer = setInterval(() => {
+      time = setInterval(() => {
         setTimeRemaining(timeRemaining - 1);
       }, 1000);
     }
 
-    return () => clearInterval(timer);
+    return () => clearInterval(time);
   }, [isPaused, timeRemaining]);
 
   useEffect(() => {

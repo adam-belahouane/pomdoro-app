@@ -33,7 +33,7 @@ function HomePage() {
     <div className="flex flex-col items-center w-screen h-screen bg-[#1E213F]">
       <h1 className="text-fontcolor1 font-bold text-3xl m-4 mt-10">pomodoro</h1>
       <Timerselector timer={timer} setTimer={setTimer} color={color} />
-      <Timer totalTime={handleTime(timer)} color={color} />
+      <Timer totalTime={handleTime(timer)} color={color} selectT={timer} setTimer={setTimer} />
       <button className="mt-14 hover:cursor-pointer" onClick={() => setIsOpen(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
