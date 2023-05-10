@@ -5,10 +5,10 @@ const Timerselector = ({ timer, setTimer, color }) => {
   };
 
   return (
-    <div className="p-2 rounded-[33px] bg-[#161932] m-11">
+    <div className="px-3 py-2 rounded-[33px] bg-[#161932] m-11 lg:m-8 lg:px-2 lg:py-1">
       <button
         className={
-          "rounded-[33px] py-4 px-8 text-sm font-bold hover:cursor-pointer " +
+          "rounded-[33px] py-4 px-8 text-sm font-bold hover:cursor-pointer lg:py-3 lg:px-6  " +
           (timer === "pomodoro"
             ? color === "color1"
               ? "bg-color1"
@@ -23,7 +23,7 @@ const Timerselector = ({ timer, setTimer, color }) => {
       </button>
       <button
         className={
-          "rounded-[33px] py-4 px-8 text-sm font-bold hover:cursor-pointer " +
+          "rounded-[33px] py-4 px-8 text-sm font-bold hover:cursor-pointer lg:py-3 lg:px-6 " +
           (timer === "sBreak"
             ? color === "color1"
               ? "bg-color1"
@@ -38,7 +38,7 @@ const Timerselector = ({ timer, setTimer, color }) => {
       </button>
       <button
         className={
-          "rounded-[33px] py-4 px-8 text-sm font-bold hover:cursor-pointer " +
+          "rounded-[33px] py-4 px-8 text-sm font-bold hover:cursor-pointer lg:py-3 lg:px-6 " +
           (timer === "lBreak"
             ? color === "color1"
               ? "bg-color1"
