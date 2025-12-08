@@ -12,3 +12,6 @@ A web App to help user manage their work using the pomodoro method
 
 # WorkFlow
 - Trello
+
+# December 2025
+- Rewriting this project in typescript to gain adams trust in working with him
